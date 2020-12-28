@@ -9,7 +9,7 @@ A package to download and pre-process covid-19 Brazil's data from brasil.io.
 # Installing
 
 ```{r}
-  remotes::install_github(https://github.com/predict-icmc/gather-data)
+  remotes::install_github("predict-icmc/gather-data")
 ```
 
 ## Dependencies 
