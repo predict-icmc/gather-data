@@ -2,7 +2,8 @@
 % Please edit documentation in R/down.R
 \name{pegaCorona}
 \alias{pegaCorona}
-\title{funcao que pega o arquivo de casos do brasil.io, faz um pequeno tratamento e retorna-o
+\title{pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE))
+funcao que pega o arquivo de casos do brasil.io, faz um pequeno tratamento e retorna-o
 retornos permitidos:
 caso_full: retorna a contagem de casos de todos os municipios desde o dia 0
 cart: obitos em cartório
@@ -11,6 +12,7 @@ last_cases: ultimo balanço divulgado, com latitude e longitude}
 pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE)
 }
 \description{
+pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE))
 funcao que pega o arquivo de casos do brasil.io, faz um pequeno tratamento e retorna-o
 retornos permitidos:
 caso_full: retorna a contagem de casos de todos os municipios desde o dia 0

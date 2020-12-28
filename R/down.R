@@ -1,25 +1,29 @@
 
 # Criacao de arquivo de dados otimizado para o dashboard
 
-
-# função que lê diretamente o gzip do servidor do brasil.io e retorna o respectivo csv
+#' função que lê diretamente o gzip do servidor do brasil.io e retorna o respectivo csv
 downCorona <- function(file_url) {
   con <- gzcon(url(file_url))
   txt <- readLines(con)
   return(read.csv(textConnection(txt)))
 }
 
-# funcao que pega o arquivo de casos do brasil.io, faz um pequeno tratamento e retorna-o
-# retornos permitidos:
-# caso_full: retorna a contagem de casos de todos os municipios desde o dia 0
-# cart: obitos em cartório
-# last_cases: ultimo balanço divulgado, com latitude e longitude
+
+#' pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE))
+#' funcao que pega o arquivo de casos do brasil.io, faz um pequeno tratamento e retorna-o
+#' retornos permitidos:
+#' caso_full: retorna a contagem de casos de todos os municipios desde o dia 0
+#' cart: obitos em cartório
+#' last_cases: ultimo balanço divulgado, com latitude e longitude
+#' @export
 pegaCorona <- function(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE){
 
   if(baixar){
     print("Fazendo o download....")
-    dados <- downCorona("https://data.brasil.io/dataset/covid19/caso_full.csv.gz")
-    cart <- downCorona("https://data.brasil.io/dataset/covid19/obito_cartorio.csv.gz")
+    if (tipo != "cart")
+      dados <- downCorona("https://data.brasil.io/dataset/covid19/caso_full.csv.gz")
+    else
+      cart <- downCorona("https://data.brasil.io/dataset/covid19/obito_cartorio.csv.gz")
   }
   # caso já tenha o arquivo na pasta
   else
