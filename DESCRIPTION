@@ -1,0 +1,23 @@
+Package: gather.covid
+Title: Gather Covid-19 data from brasil.io
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Francisco",
+           family = "Rosa Dias de Miranda",
+           role = c("aut", "cre"),
+           email = "francisco.miranda@usp.br",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package downloads, preprocess covid-19 data from brasil.io
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports:
+	tidyverse,
+	data.table,
+	dplyr,
+	tidyr
+Suggests: 
+    knitr
+VignetteBuilder: knitr
