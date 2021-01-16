@@ -8,6 +8,12 @@ downCorona <- function(file_url) {
   return(read.csv(textConnection(txt)))
 }
 
+#' Função que recebe um dia a partir do dia zero ("20200225") a respectiva data no formato apropriado.
+#' @export
+pandate <- function(x)
+{
+  return (lubridate::ymd("20200225") + lubridate::ddays(x))
+}
 
 #' pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE))
 #' funcao que pega o arquivo de casos do brasil.io, faz um pequeno tratamento e retorna-o

@@ -6,7 +6,7 @@ Authors@R:
            family = "Rosa Dias de Miranda",
            role = c("aut", "cre"),
            email = "francisco.miranda@usp.br",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           comment = c(ORCID = "PREDICT-ICMC"))
 Description: This package downloads, preprocess covid-19 data from brasil.io
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -14,10 +14,10 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports:
-	tidyverse,
 	data.table,
 	dplyr,
-	tidyr
+	tidyr,
+	lubridate
 Suggests: 
     knitr
 VignetteBuilder: knitr
