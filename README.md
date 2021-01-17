@@ -49,7 +49,9 @@ df %>% filter(city == "Curitiba") %>% ggplot() + geom_line(aes(x = pandate(tempo
 ![](img/1.png)
 
 ```{r}
-  df <- pegaCorona(tipo = "last_cases", baixar = F) 
+library (leaflet)
+
+df <- pegaCorona(tipo = "last_cases") 
 
 pal <- colorNumeric(palette = "Reds", domain = df$last_available_confirmed_per_100k_inhabitants)
 
