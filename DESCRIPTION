@@ -17,7 +17,8 @@ Imports:
 	data.table,
 	dplyr,
 	tidyr,
-	lubridate
+	lubridate,
+	feather
 Suggests: 
     knitr
 VignetteBuilder: knitr

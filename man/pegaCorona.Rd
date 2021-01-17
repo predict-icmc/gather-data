@@ -2,20 +2,26 @@
 % Please edit documentation in R/down.R
 \name{pegaCorona}
 \alias{pegaCorona}
-\title{pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE))
-funcao que pega o arquivo de casos do brasil.io, faz um pequeno tratamento e retorna-o
-retornos permitidos:
-caso_full: retorna a contagem de casos de todos os municipios desde o dia 0
-cart: obitos em cartório
-last_cases: ultimo balanço divulgado, com latitude e longitude}
-\usage{
-pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE)
-}
-\description{
-pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE))
+\title{pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE, salvar = FALSE))
 funcao que pega o arquivo de casos do brasil.io, faz um pequeno tratamento e retorna-o
 retornos permitidos:
 caso_full: retorna a contagem de casos de todos os municipios desde o dia 0
 cart: obitos em cartório
 last_cases: ultimo balanço divulgado, com latitude e longitude
+salvar: salva os arquivos no formato feather (para mais informações consulte https://github.com/wesm/feather)}
+\usage{
+pegaCorona(
+  tipo = c("caso_full", "cart", "last_cases"),
+  baixar = TRUE,
+  salvar = FALSE
+)
+}
+\description{
+pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE, salvar = FALSE))
+funcao que pega o arquivo de casos do brasil.io, faz um pequeno tratamento e retorna-o
+retornos permitidos:
+caso_full: retorna a contagem de casos de todos os municipios desde o dia 0
+cart: obitos em cartório
+last_cases: ultimo balanço divulgado, com latitude e longitude
+salvar: salva os arquivos no formato feather (para mais informações consulte https://github.com/wesm/feather)
 }
