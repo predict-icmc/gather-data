@@ -15,14 +15,26 @@ pandate <- function(x)
   return (lubridate::ymd("20200225") + lubridate::ddays(x))
 }
 
-#' pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE))
+#' pegaCorona(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE, salvar = FALSE))
 #' funcao que pega o arquivo de casos do brasil.io, faz um pequeno tratamento e retorna-o
 #' retornos permitidos:
 #' caso_full: retorna a contagem de casos de todos os municipios desde o dia 0
 #' cart: obitos em cartório
 #' last_cases: ultimo balanço divulgado, com latitude e longitude
+#' salvar: salva os arquivos no formato feather (para mais informações consulte https://github.com/wesm/feather)
+#' para informacoes sobre o dataset, veja https://github.com/turicas/covid19-br/blob/master/api.md
 #' @export
-pegaCorona <- function(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE){
+pegaCorona <- function(tipo = c("caso_full", "cart", "last_cases"), baixar = TRUE, salvar = FALSE){
+
+  if(!baixar && !salvar){
+      if(tipo == "cart")
+        return(feather::read_feather("ob-cartorio.feather"))
+      else if(tipo == "caso_full")
+        return (feather::read_feather("full-covid.feather"))
+    else if(tipo == "last_cases")
+      return (feather::read_feather("latlong-covid.feather"))
+  }
+
 
   if(baixar){
     print("Fazendo o download....")
@@ -43,6 +55,14 @@ pegaCorona <- function(tipo = c("caso_full", "cart", "last_cases"), baixar = TRU
     return(cart)
   else if(tipo == "caso_full")
     return (dados)
+
+  if(salvar){
+    if(tipo == "cart")
+      return(feather::write_feather(cart,sprintf("ob-cartorio.feather")))
+    else if(tipo == "caso_full")
+      return (feather::write_feather(dados,sprintf("full-covid.feather")))
+
+  }
 
   else
   {
@@ -70,6 +90,8 @@ pegaCorona <- function(tipo = c("caso_full", "cart", "last_cases"), baixar = TRU
 
     dados <- tidyr::drop_na(dados, latitude,longitude)
 
+    if(tipo == "last_cases" && salvar)
+      return (feather::write_feather(dados,sprintf("latlong-covid.feather")))
     return(dados)
   }
 }
