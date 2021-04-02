@@ -120,10 +120,10 @@ baixar_seade <- function() {
       total_novos_obitos = sum(obitos_novos)
     ) %>%
     mutate(
-      mm7d_casos = frollmean(total_novos_casos, 7),
-      mm7d_obitos = frollmean(total_novos_obitos, 7)
+      mm7d_casos = data.table::frollmean(total_novos_casos, 7),
+      mm7d_obitos = data.table::frollmean(total_novos_obitos, 7)
     ) %>%
-    left_join(leitos, by = c("datahora", "cod_drs"))
+    dplyr::left_join(leitos, by = c("datahora", "cod_drs"))
 
   casos_drs$datahora <- casos_drs$datahora %>% lubridate::as_date()
 
