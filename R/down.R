@@ -95,3 +95,41 @@ pegaCorona <- function(tipo = c("caso_full", "cart", "last_cases"), baixar = TRU
     return(dados)
   }
 }
+
+#' baixar_seade()
+#' @retorna dados do seade de letos e casos por DRS
+#' @export
+baixar_seade <- function() {
+  # Lendo a base de dados do SEADE com os casos em SP
+  casos <- read.csv("https://raw.githubusercontent.com/seade-R/dados-covid-sp/master/data/dados_covid_sp.csv", sep = ";")
+  leitos <- read.csv("https://raw.githubusercontent.com/seade-R/dados-covid-sp/master/data/plano_sp_leitos_internacoes_serie_nova_variacao_semanal.csv", sep = ";")
+
+  # incluindo os codigos das DRS na base de leitos
+  leitos <- leitos %>% mutate(cod_drs = extract_numeric(nome_drs))
+
+
+  # ajustando manualmente os codigos das DRS
+  leitos$cod_drs[c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17)] <- c(10, 7, 8, 13, 16, 12, 3, 4, 5, 11, 2, 9, 1, 14, 15, 6, 17)
+
+  casos_drs <- casos %>%
+    arrange(desc(datahora)) %>%
+    # filter(nome_drs == "Grande São Paulo") %>%
+    group_by(cod_drs, datahora) %>%
+    summarise(
+      total_novos_casos = sum(casos_novos),
+      total_novos_obitos = sum(obitos_novos)
+    ) %>%
+    mutate(
+      mm7d_casos = frollmean(total_novos_casos, 7),
+      mm7d_obitos = frollmean(total_novos_obitos, 7)
+    ) %>%
+    left_join(leitos, by = c("datahora", "cod_drs"))
+
+  casos_drs$datahora <- casos_drs$datahora %>% lubridate::as_date()
+
+  # trocando as virgulas por pontos
+  casos_drs$ocupacao_leitos <- as.numeric(gsub(",", ".", gsub("\\.", "", casos_drs$ocupacao_leitos)))
+
+
+  casos_drs
+}

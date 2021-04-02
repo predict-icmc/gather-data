@@ -8,7 +8,8 @@ retornos permitidos:
 caso_full: retorna a contagem de casos de todos os municipios desde o dia 0
 cart: obitos em cartório
 last_cases: ultimo balanço divulgado, com latitude e longitude
-salvar: salva os arquivos no formato feather (para mais informações consulte https://github.com/wesm/feather)}
+salvar: salva os arquivos no formato feather (para mais informações consulte https://github.com/wesm/feather)
+para informacoes sobre o dataset, veja https://github.com/turicas/covid19-br/blob/master/api.md}
 \usage{
 pegaCorona(
   tipo = c("caso_full", "cart", "last_cases"),
@@ -24,4 +25,5 @@ caso_full: retorna a contagem de casos de todos os municipios desde o dia 0
 cart: obitos em cartório
 last_cases: ultimo balanço divulgado, com latitude e longitude
 salvar: salva os arquivos no formato feather (para mais informações consulte https://github.com/wesm/feather)
+para informacoes sobre o dataset, veja https://github.com/turicas/covid19-br/blob/master/api.md
 }
