@@ -18,7 +18,8 @@ Imports:
 	dplyr,
 	tidyr,
 	lubridate,
-	feather
+	feather,
+	magrittr
 Suggests: 
     knitr
 VignetteBuilder: knitr
