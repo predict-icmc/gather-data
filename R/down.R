@@ -35,12 +35,13 @@ pegaCorona <- function(tipo = c("caso_full", "cart", "last_cases"), baixar = TRU
       return (feather::read_feather("latlong-covid.feather"))
   }
 
+  #if(tipo == "vacina") return(downCorona("https://data.brasil.io/dataset/covid19/microdados_vacinacao.csv.gz"))
 
   if(baixar){
     print("Fazendo o download....")
     if (tipo != "cart")
       dados <- downCorona("https://data.brasil.io/dataset/covid19/caso_full.csv.gz")
-    else
+    else if (tipo == "cart")
       cart <- downCorona("https://data.brasil.io/dataset/covid19/obito_cartorio.csv.gz")
   }
   # caso já tenha o arquivo na pasta
@@ -48,13 +49,15 @@ pegaCorona <- function(tipo = c("caso_full", "cart", "last_cases"), baixar = TRU
     dados<-read.csv(file = "caso_full.csv",header=TRUE)
 
   print("Download concluido. Transformando os dados")
-  dados$tempo<- as.numeric(as.Date(dados$date) - min(as.Date(dados$date)))
-  dados$date <- as.Date(dados$date)
+
 
   if(tipo == "cart")
     return(cart)
-  else if(tipo == "caso_full")
+  else if(tipo == "caso_full"){
+    dados$tempo<- as.numeric(as.Date(dados$date) - min(as.Date(dados$date)))
+    dados$date <- as.Date(dados$date)
     return (dados)
+  }
 
   if(salvar){
     if(tipo == "cart")
