@@ -49,8 +49,11 @@ df %>% filter(city == "Curitiba") %>% ggplot() + geom_line(aes(x = date, y = las
 ![](img/1.png)
 
 ```{r map-plot}
+library(gather.covid)
+library(tidyverse)
 library(leaflet)
-df <- pegaCorona(tipo = "last_cases", baixar = F)
+
+df <- pegaCorona(tipo = "last_cases")
 
 
 values <- df %>%
@@ -92,9 +95,13 @@ df %>%
 ## Cartogram with `brazilmaps` library
 
 ```{r}
+library(gather.covid)
+library(tidyverse)
+library(leaflet)
 library(brazilmaps)
 library(sf)
 
+df <- pegaCorona(tipo = "last_cases")
 
 # definindo o dataframe que contém dados geométricos
 shp <- get_brmap("State")
