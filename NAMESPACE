@@ -3,3 +3,5 @@
 export(baixar_seade)
 export(pandate)
 export(pegaCorona)
+
+importFrom(magrittr,"%>%")
