@@ -2,10 +2,12 @@
 % Please edit documentation in R/down.R
 \name{baixar_seade}
 \alias{baixar_seade}
-\title{baixar_seade()}
+\title{baixar_seade()
+retorna dados do seade de letos e casos por DRS}
 \usage{
 baixar_seade()
 }
 \description{
 baixar_seade()
+retorna dados do seade de letos e casos por DRS
 }

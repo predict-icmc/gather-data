@@ -97,7 +97,7 @@ pegaCorona <- function(tipo = c("caso_full", "cart", "last_cases"), baixar = TRU
 }
 
 #' baixar_seade()
-#' @retorna dados do seade de letos e casos por DRS
+#' retorna dados do seade de letos e casos por DRS
 #' @export
 baixar_seade <- function() {
   # Lendo a base de dados do SEADE com os casos em SP
